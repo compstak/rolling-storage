@@ -14,10 +14,10 @@
 	var rollingStorage = function (storage, namespace, ttl, maxSize) {
 
 		function makeKey (key) {
-			return 'smartStorage-'+namespace+'-'+key;
+			return 'rollingStorage-'+namespace+'-'+key;
 		}
 
-		var inventory = JSON.parse(storage.getItem('smartStorage-index-'+namespace) || '[]');
+		var inventory = JSON.parse(storage.getItem('rollingStorage-inventory-'+namespace) || '[]');
 		var size = 0;
 		var timeouts = {};
 
@@ -37,7 +37,7 @@
 		});
 
 		function saveInventory () {
-			storage.setItem('smartStorage-index-'+namespace, JSON.stringify(inventory));
+			storage.setItem('rollingStorage-inventory-'+namespace, JSON.stringify(inventory));
 		}
 
 		function get (key) {
@@ -49,7 +49,12 @@
 		}
 
 		function has (key) {
-			return !!inventory[key];
+			for (var i = 0; i < inventory.length; i += 1) {
+				if (inventory[i].key === key) {
+					return true;
+				}
+			}
+			return false;
 		}
 
 		function set (key, value) {
@@ -74,14 +79,19 @@
 
 			inventory.push(indexEntry);
 
-			var doneAdding = false;
-			while (!doneAdding) {
+			var doneTrying = false;
+			while (!doneTrying) {
 				try {
 					storage.setItem(makeKey(key), jsonString);
 					saveInventory();
-					doneAdding = true;
+					doneTrying = true;
 				} catch (e) {
-					remove(inventory[0].key);
+					if (inventory.length) {
+						remove(inventory[0].key);
+					} else {
+						// this will happen when the remaining storage is smaller than the item.
+						doneTrying = true;
+					}
 				}
 			}
 		}
