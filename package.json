@@ -1,0 +1,19 @@
+{
+  "name": "rolling-storage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rolling-storage.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://sakabako@github.com/compstak/rolling-storage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/compstak/rolling-storage/issues"
+  },
+  "homepage": "https://github.com/compstak/rolling-storage"
+}
