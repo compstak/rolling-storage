@@ -1,17 +1,22 @@
 {
   "name": "rolling-storage",
   "version": "1.0.0",
-  "description": "",
+  "description": "An API for localStorage or sessionStorage with ttl and size limits",
   "main": "rolling-storage.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "testem"
   },
   "repository": {
     "type": "git",
-    "url": "https://sakabako@github.com/compstak/rolling-storage.git"
+    "url": "https://github.com/compstak/rolling-storage.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "localStorage",
+    "ttl",
+    "sessionStorage"
+  ],
+  "license": "MIT",
+  "author": "Stu Kabakoff <stuart@compstak.com>",
   "bugs": {
     "url": "https://github.com/compstak/rolling-storage/issues"
   },

@@ -1,0 +1,8 @@
+{
+  "framework": "jasmine2",
+  
+  "src_files": [
+    "rolling-storage.js",
+    "spec/*.js"
+  ]
+}

@@ -11,7 +11,28 @@
 	}
 }(this, function () {
 
-	var rollingStorage = function (storage, namespace, ttl, maxSize) {
+	var rollingStorage = function (options) {
+
+		var storage = options.storage;
+		var namespace = options.namespace;
+		var ttl = options.ttl;
+		var maxSize = options.maxSize;
+
+		if (!storage) {
+			throw new Error('Attemted to create a rollingStorage instance without a storage strategy! Usually this is localStorage or sessionStorage.');
+		}
+
+		if (!namespace) {
+			throw new Error('Attemted to create a rollingStorage instance without a namespace!');
+		}
+
+		if (!ttl) {
+			throw new Error('Attemted to create a rollingStorage instance without a ttl! This is the number of milliseconds it will keep content.');
+		}
+
+		if (!maxSize) {
+			throw new Error('Attemted to create a rollingStorage instance without a maxSize! This is the largest it will allow the cache to grow.');
+		}
 
 		function makeKey (key) {
 			return 'rollingStorage-'+namespace+'-'+key;
@@ -32,7 +53,9 @@
 			if (ttl < 0) {
 				remove(item.key);
 			} else {
-				timeouts[item.key] = setTimeout(remove.bind(null, item.key), ttl);
+				timeouts[item.key] = setTimeout(function () {
+					remove(item.key);
+				}, ttl);
 			}
 		});
 
@@ -75,7 +98,9 @@
 
 			clearTimeout(timeouts[key]); // in case we're saving over an old value.
 
-			timeouts[key] = setTimeout(remove.bind(null, key), ttl);
+			timeouts[key] = setTimeout(function () {
+				remove(key);
+			}, ttl);
 
 			inventory.push(indexEntry);
 
