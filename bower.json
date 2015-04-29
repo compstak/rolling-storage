@@ -16,5 +16,8 @@
     "ttl",
     "sessionStorage"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "expect": "~0.3.1"
+  }
 }

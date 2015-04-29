@@ -1,0 +1,88 @@
+info Test'em starting... 
+info Seeking for config file... 
+info Hook before_tests started 
+info Hook before_tests finished 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info Client disconnected IE 9.0 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info Client disconnected IE 9.0 
+info Client disconnected IE 9.0 
+ERR! In onInputChar: TypeError: Cannot call method 'scrollUp' of undefined
+TypeError: Cannot call method 'scrollUp' of undefined
+    at module.exports.View.extend.onInputChar (/usr/local/lib/node_modules/testem/lib/dev/ui/appview.js:208:20)
+    at Stream.emit (events.js:117:20)
+    at Stream.Charm.write (/usr/local/lib/node_modules/testem/node_modules/charm/index.js:95:10)
+    at write (_stream_readable.js:601:24)
+    at flow (_stream_readable.js:610:7)
+    at ReadStream.pipeOnReadable (_stream_readable.js:642:5)
+    at ReadStream.emit (events.js:92:17)
+    at emitReadable_ (_stream_readable.js:426:10)
+    at emitReadable (_stream_readable.js:422:5)
+    at readableAddChunk (_stream_readable.js:165:9) 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info New client connected: IE 9.0 null 
+info Hook after_tests started 
+info Hook after_tests finished 
+info Client disconnected IE 9.0 
+info Hook on_exit started 
+info Hook on_exit finished 
+info Hook before_tests started 
+info Hook before_tests finished 

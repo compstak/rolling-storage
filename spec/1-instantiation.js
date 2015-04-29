@@ -1,17 +1,18 @@
 /* global describe, expect, it, rollingStorage */
 describe('Instantiation', function () {
+	
 	it('should be a function', function () {
-		expect(typeof rollingStorage).toBe('function');
+		expect(rollingStorage).to.be.a('function');
 	});
 
 	it('should error if no options are provided', function () {
-		expect(rollingStorage).toThrow();
+		expect(rollingStorage).to.throwError();
 	});
 
 	it('should error if only invalid options are provided', function () {
 		expect(function () {
 			return rollingStorage({'fart': 'fart'});
-		}).toThrow();
+		}).to.throwError();
 	});
 
 	it('should error if namespace is left off', function () {
@@ -21,7 +22,7 @@ describe('Instantiation', function () {
 				maxSize: 1024 * 1024 * 1.5, // 1.5 MB
 				storage: localStorage
 			});
-		}).toThrow();
+		}).to.throwError();
 	});
 
 	it('should error if ttl is left off', function () {
@@ -31,7 +32,7 @@ describe('Instantiation', function () {
 				maxSize: 1024 * 1024 * 1.5, // 1.5 MB
 				storage: localStorage
 			});
-		}).toThrow();
+		}).to.throwError();
 	});
 
 	it('should error if maxSize is left off', function () {
@@ -41,7 +42,7 @@ describe('Instantiation', function () {
 				ttl: 1000 * 60 * 60, // 1 hour
 				storage: localStorage
 			});
-		}).toThrow();
+		}).to.throwError();
 	});
 
 	it('should error if storage strategy is left off', function () {
@@ -51,7 +52,7 @@ describe('Instantiation', function () {
 				ttl: 1000 * 60 * 60, // 1 hour
 				maxSize: 1024 * 1024 * 1.5, // 1.5 MB
 			});
-		}).toThrow();
+		}).to.throwError();
 	});
 
 	it('should give you an object with the appriate interface', function () {
@@ -62,11 +63,11 @@ describe('Instantiation', function () {
 			storage: localStorage
 		});
 
-		expect(typeof inst.get).toBe('function');
-		expect(typeof inst.set).toBe('function');
-		expect(typeof inst.has).toBe('function');
-		expect(typeof inst.remove).toBe('function');
-		expect(typeof inst.flush).toBe('function');
+		expect(inst.get).to.be.a('function');
+		expect(inst.set).to.be.a('function');
+		expect(inst.has).to.be.a('function');
+		expect(inst.remove).to.be.a('function');
+		expect(inst.flush).to.be.a('function');
 
 	});
 });

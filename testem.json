@@ -1,8 +1,14 @@
 {
-  "framework": "jasmine2",
-  
+  "framework": "mocha",
+
   "src_files": [
+    "bower_components/expect/index.js",
     "rolling-storage.js",
     "spec/*.js"
-  ]
+  ],
+
+  "on_start": {
+    "command": "bower install"
+  }
+
 }
