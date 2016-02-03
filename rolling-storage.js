@@ -59,8 +59,14 @@
 			}
 		});
 
+		var saveInventoryTimeout = null;
 		function saveInventory () {
-			storage.setItem('rollingStorage-inventory-'+namespace, JSON.stringify(inventory));
+			if (!saveInventoryTimeout) {
+				saveInventoryTimeout = setTimeout(function () {
+					saveInventoryTimeout = null;
+					storage.setItem('rollingStorage-inventory-'+namespace, JSON.stringify(inventory));
+				}, 4);
+			}
 		}
 
 		function get (key) {
