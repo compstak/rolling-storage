@@ -1,7 +1,7 @@
 {
   "name": "rolling-storage",
   "main": "rolling-storage.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/compstak/rolling-storage",
   "authors": [
     "Stu Kabakoff <stuart@compstak.com>"
