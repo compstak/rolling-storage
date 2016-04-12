@@ -46,19 +46,6 @@
 			size += item.size;
 		});
 
-		// determine if anything is expired and remove it.
-		var now = Date.now();
-		inventory.slice().forEach(function (item) {
-			var ttl = item.expiration - now;
-			if (ttl < 0) {
-				remove(item.key);
-			} else {
-				timeouts[item.key] = setTimeout(function () {
-					remove(item.key);
-				}, ttl);
-			}
-		});
-
 		var saveInventoryTimeout = null;
 		function saveInventory () {
 			if (!saveInventoryTimeout) {
@@ -69,13 +56,36 @@
 			}
 		}
 
-		function get (key) {
-			if (has(key)) {
-				return JSON.parse(storage.getItem(makeKey(key)));
-			} else {
-				return undefined;
+		function remove (key) {
+			var i = 0;
+			while (inventory[i] && inventory[i].key !== key) {
+				i += 1;
+			}
+
+			var item = inventory[i];
+
+			if (item) {
+				storage.removeItem(makeKey(item.key));
+				size -= item.size;
+				clearTimeout(timeouts[item.key]);
+				delete timeouts[item.key];
+				inventory.splice(i, 1);
+				saveInventory();
 			}
 		}
+
+		// determine if anything is expired and remove it.
+		var now = Date.now();
+		inventory.slice().forEach(function (item) {
+			var remainingTtl = item.expiration - now;
+			if (remainingTtl < 0) {
+				remove(item.key);
+			} else {
+				timeouts[item.key] = setTimeout(function () {
+					remove(item.key);
+				}, remainingTtl);
+			}
+		});
 
 		function has (key) {
 			for (var i = 0; i < inventory.length; i += 1) {
@@ -84,6 +94,14 @@
 				}
 			}
 			return false;
+		}
+
+		function get (key) {
+			if (has(key)) {
+				return JSON.parse(storage.getItem(makeKey(key)));
+			} else {
+				return undefined;
+			}
 		}
 
 		function set (key, value) {
@@ -124,24 +142,6 @@
 						doneTrying = true;
 					}
 				}
-			}
-		}
-
-		function remove (key) {
-			var i = 0;
-			while (inventory[i] && inventory[i].key !== key) {
-				i += 1;
-			}
-
-			var item = inventory[i];
-
-			if (item) {
-				storage.removeItem(makeKey(item.key));
-				size -= item.size;
-				clearTimeout(timeouts[item.key]);
-				delete timeouts[item.key];
-				inventory.splice(i, 1);
-				saveInventory();
 			}
 		}
 
