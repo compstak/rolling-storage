@@ -11,12 +11,18 @@
 	}
 }(this, function () {
 
+	var existingCaches = {};
+
 	var rollingStorage = function (options) {
 
 		var storage = options.storage;
 		var namespace = options.namespace;
 		var ttl = options.ttl;
 		var maxSize = options.maxSize;
+
+		if (existingCaches[namespace]) {
+			return existingCaches[namespace];
+		}
 
 		if (!storage) {
 			throw new Error('Attemted to create a rollingStorage instance without a storage strategy! Usually this is localStorage or sessionStorage.');
@@ -158,6 +164,8 @@
 			remove: remove,
 			flush: flush
 		};
+
+		existingCaches[namespace] = exports;
 
 		return exports;
 	};
